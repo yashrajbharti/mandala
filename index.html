@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script src="https://cdn.rawgit.com/tizzle/aframe-orbit-controls-component/v0.1.14/dist/aframe-orbit-controls-component.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+
+  <a-scene vr-mode-ui="enabled: false">
+    <a-assets>
+      <a-asset-item id="candle" src="./scene.gltf"></a-asset-item>
+    </a-assets>
+
+    <a-entity
+        id="camera"
+        camera="fov: 80; zoom: 0.6;"
+        position="0 2 5"
+        orbit-controls="
+            autoRotate: false;
+            enableZoom: false;
+            target: #target;
+            minPolarAngle: 0;
+            maxPolarAngle:0;
+            enableDamping: true;
+            dampingFactor: 0.125;
+            rotateSpeed:0.25;
+            minDistance:6;
+            maxDistance:300;
+            "
+        mouse-cursor="">
+    </a-entity>
+
+
+    <a-entity  position="0 0 0" id="target" >
+
+    <a-entity id="mandala" gltf-model="#candle" animation-mixer scale="0.05 0.05 0.05" position="0.481 0 -1.154" ></a-entity>
+
+    </a-entity>
+
+  </a-scene>
+<script type="text/javascript">
+
+  document.getElementById('mandala').setAttribute('animation-mixer', {timeScale: 10})
+</script>
+</body>
+</html>
